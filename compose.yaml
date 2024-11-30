@@ -1,6 +1,6 @@
 services:
   database:
-    image: 'postgres:9-alpine'
+    image: 'postgres:17-alpine'
     ports:
       - 15432:5432
     env_file:

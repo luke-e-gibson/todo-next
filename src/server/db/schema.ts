@@ -3,34 +3,25 @@
 
 import { sql } from "drizzle-orm";
 import {
+  bigint, bigserial,
+  boolean,
   index,
   integer,
   pgTableCreator,
+  serial, text,
   timestamp,
-  varchar,
+  varchar
 } from "drizzle-orm/pg-core";
+import * as module from "node:module";
 
-/**
- * This is an example of how to use the multi-project schema feature of Drizzle ORM. Use the same
- * database instance for multiple projects.
- *
- * @see https://orm.drizzle.team/docs/goodies#multi-project-schema
- */
-export const createTable = pgTableCreator((name) => `todo-next_${name}`);
+export const createTable = pgTableCreator((name) => `${name}`);
 
-export const posts = createTable(
-  "post",
-  {
-    id: integer("id").primaryKey().generatedByDefaultAsIdentity(),
-    name: varchar("name", { length: 256 }),
-    createdAt: timestamp("created_at", { withTimezone: true })
-      .default(sql`CURRENT_TIMESTAMP`)
-      .notNull(),
-    updatedAt: timestamp("updated_at", { withTimezone: true }).$onUpdate(
-      () => new Date()
-    ),
-  },
-  (example) => ({
-    nameIndex: index("name_idx").on(example.name),
-  })
-);
+
+export const todos = createTable("ToDos", {
+  id: bigserial("id", { mode: "number" }).primaryKey(),
+  owner: varchar("owner").notNull(),
+  todo: text("text").notNull(),
+  done: boolean("done").notNull().default(false),
+
+  created: bigint("created", {mode: "number"}).notNull()
+})
