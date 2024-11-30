@@ -10,3 +10,15 @@ export async function createToDo(todo: {todo: string}){
 
   await db.insert(todos).values({todo: todo.todo, owner: user.userId, created: Date.now()})
 }
+
+export async function getUserTodos() {
+  const user = await auth();
+  if(!user.userId) throw new Error("Unauthorized");
+
+  const todos = await db.query.todos.findMany({
+    where: ( todos, { eq } ) => eq(todos.owner, user.userId),
+    orderBy: ( todos, {asc} ) => asc(todos.created)
+  })
+
+  return todos
+}

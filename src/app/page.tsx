@@ -1,71 +1,35 @@
-"use client"
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
+
 import { SignedIn, SignedOut, useUser } from "@clerk/nextjs";
-import { Input } from "@/components/ui/input"
+import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { Checkbox } from "@/components/ui/checkbox";
-import { MoreHorizontal } from "lucide-react";
-import { useState } from "react";
+import { lazy, Suspense,  } from "react";
 import { createToDo } from "@/server/queris";
 import { trpc } from "@/lib/trpc";
-import { ClerkClient } from "@clerk/backend";
 
-function Todo({ done, text, id }: {done: boolean, text: string, id: number}) {
+import { TodoItems } from "@/app/_components/todoItems";
+import { AddTodoButton } from "@/app/_components/AddToDoButton";
+
+function TodoItemLoading() {
   return (
-    <div className="border rounded border-gray-200 flex justify-between items-center space-x-2" id={String(id)}>
-      <div className="flex items-center space-x-2">
-        <Checkbox checked={done} className=""/>
-        <label className="text-lg" htmlFor={String(id)}>{text}</label>
-      </div>
-
-      <div className="px-5 flex justify-between space-x-2">
-        <DropdownMenu>
-          <DropdownMenuTrigger>
-            <p className="sr-only">Content Menu</p>
-            <MoreHorizontal/>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent>
-            <DropdownMenuLabel> Todo Actions </DropdownMenuLabel>
-            <DropdownMenuSeparator/>
-            <DropdownMenuItem>Edit</DropdownMenuItem>
-            <DropdownMenuItem>Delete</DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
-      </div>
-    </div>
-  )
-}
-
-function TodoIteams() {
-
+    <div className="mx-auto grid max-w-2xl grid-cols-1 gap-2">Loading</div>
+  );
 }
 
 export default function HomePage() {
-  const [todo, setTodo] = useState("")
-  const user = useUser();
 
-  const { data } = trpc.getTodos.useQuery({ userId: "user_2pZK6TP5xLjvrevjMv8OjCDan5x" })
-  console.log(data)
 
-  async function addClick(){
-    await createToDo({todo: todo})
-    void setTodo("")
-  }
 
   return (
-    <main className="w-full h-full py-16">
+    <main className="h-full w-full py-16">
       <SignedIn>
-          <div className="max-w-4xl mx-auto min-h-14 border rounded py-5 shadow">
-            <h1 className="text-center text-2xl py-3">Todos:</h1>
-            <div className="max-w-2xl mx-auto min-h-14 flex">
-              <Input type="text" onChange={(e)=> {setTodo(e.target.value)}} value={todo} placeholder="What do you want to do?"/>
-              <Button className="min-w-40" onClick={()=> addClick()}>Add!</Button>
-            </div>
-            
+        <div className="mx-auto min-h-14 max-w-4xl rounded border py-5 shadow">
+          <h1 className="py-3 text-center text-2xl">Todos:</h1>
+          <AddTodoButton/>
+          <TodoItems />
           </div>
       </SignedIn>
       <SignedOut>
-          <h1 className="text-2xl text-center">Sign In To use this app</h1>
+        <h1 className="text-center text-2xl">Sign In To use this app</h1>
       </SignedOut>
     </main>
   );
