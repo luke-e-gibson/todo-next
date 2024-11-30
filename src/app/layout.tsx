@@ -4,6 +4,8 @@ import { GeistSans } from "geist/font/sans";
 import { type Metadata } from "next";
 import Navbar from "@/app/_components/Navbar";
 import { ClerkProvider } from "@clerk/nextjs";
+import TrpcProvider from "@/lib/trpc";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 export const metadata: Metadata = {
   title: "NextJs Todo App",
@@ -16,14 +18,17 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" className={`${GeistSans.variable}`}>
-      <ClerkProvider>
-        <body>
-        <header>
-          <Navbar />
-        </header>
-        {children}
-        </body>
-      </ClerkProvider>
+      <TrpcProvider>
+        <ClerkProvider>
+          <body>
+          <header>
+            <Navbar />
+          </header>
+          {children}
+          <ReactQueryDevtools initialIsOpen={false} />
+          </body>
+        </ClerkProvider>
+      </TrpcProvider>
     </html>
   );
 }

@@ -1,9 +1,14 @@
+"use client"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
-import { SignedIn, SignedOut } from "@clerk/nextjs";
+import { SignedIn, SignedOut, useUser } from "@clerk/nextjs";
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { MoreHorizontal } from "lucide-react";
+import { useState } from "react";
+import { createToDo } from "@/server/queris";
+import { trpc } from "@/lib/trpc";
+import { ClerkClient } from "@clerk/backend";
 
 function Todo({ done, text, id }: {done: boolean, text: string, id: number}) {
   return (
@@ -31,20 +36,32 @@ function Todo({ done, text, id }: {done: boolean, text: string, id: number}) {
   )
 }
 
+function TodoIteams() {
+
+}
+
 export default function HomePage() {
+  const [todo, setTodo] = useState("")
+  const user = useUser();
+
+  const { data } = trpc.getTodos.useQuery({ userId: "user_2pZK6TP5xLjvrevjMv8OjCDan5x" })
+  console.log(data)
+
+  async function addClick(){
+    await createToDo({todo: todo})
+    void setTodo("")
+  }
+
   return (
     <main className="w-full h-full py-16">
       <SignedIn>
-          <div className="max-w-4xl mx-auto min-h-14 border rounded py-5">
+          <div className="max-w-4xl mx-auto min-h-14 border rounded py-5 shadow">
             <h1 className="text-center text-2xl py-3">Todos:</h1>
             <div className="max-w-2xl mx-auto min-h-14 flex">
-              <Input type="text" className="" placeholder="What do you want to do?"/>
-              <Button className="min-w-40">Add!</Button>
+              <Input type="text" onChange={(e)=> {setTodo(e.target.value)}} value={todo} placeholder="What do you want to do?"/>
+              <Button className="min-w-40" onClick={()=> addClick()}>Add!</Button>
             </div>
-            <div className="mx-auto max-w-2xl grid grid-cols-1 gap-2">
-                <Todo done={false} text={"Hello"} id={444}/>
-                <Todo done={true} text={"this is bob"} id={454}/>
-            </div>
+            
           </div>
       </SignedIn>
       <SignedOut>

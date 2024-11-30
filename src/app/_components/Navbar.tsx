@@ -4,7 +4,7 @@ import Link from "next/link";
 
 export default function Navbar() {
   return (
-    <nav className="flex items-center justify-between border-b-2 border-border px-4 py-4 sm:px-6 lg:px-8">
+    <nav className="flex items-center justify-between border-b-2 border-border px-4 py-4 sm:px-6 lg:px-8 shadow">
       <SignedIn>
         <Link href="/app">
           <h1 className="text-xl">Todo App</h1>
