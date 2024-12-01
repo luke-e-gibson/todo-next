@@ -39,6 +39,11 @@ yarn-error.log*
 # vercel
 .vercel
 
+sentry.client.config.ts
+sentry.edge.config.ts
+sentry.server.config.ts
+
+
 # typescript
 *.tsbuildinfo
 
