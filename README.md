@@ -4,6 +4,13 @@ A serverless todo app made in nextjs.
 
 ![Screenshot of app](https://utfs.io/f/XYf3vgwsdO6enWEt3KHQPeh7KjDSN6kzUmgwCMXdOVcvny4J)
 
+
+## Using Todo App
+1. Sign in or create an account
+2. Add todos
+3. Check the checkbox to complete iteam
+4. Use ... button to delete todo
+
 ## Running the project
 
 ### What you need:
