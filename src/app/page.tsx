@@ -7,13 +7,6 @@ export default function HomePage() {
 
   return (
     <main className="h-full w-full py-16">
-      <Head>
-        <meta
-          name="google-site-verification"
-          content={env.NEXT_PUBLIC_GOOGLE_CONTENT_HEAD}
-        />
-      </Head>
-
       <SignedIn>
         <div className="mx-auto min-h-14 max-w-4xl rounded border py-5 shadow">
           <h1 className="py-3 text-center text-2xl">Todos:</h1>
