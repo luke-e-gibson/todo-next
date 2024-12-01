@@ -3,6 +3,7 @@
 import { db } from "@/server/db";
 import { auth } from "@clerk/nextjs/server";
 import { todos } from "@/server/db/schema";
+import { eq } from "drizzle-orm";
 
 export async function createToDo(todo: {todo: string}){
   const user = await auth();
@@ -21,4 +22,8 @@ export async function getUserTodos() {
   })
 
   return todos
+}
+
+export async function changeTodoStatus(todoId: number, status: boolean) {
+  await db.update(todos).set({done: status}).where(eq(todos.id, todoId))
 }

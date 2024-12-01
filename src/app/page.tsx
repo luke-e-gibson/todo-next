@@ -1,19 +1,7 @@
-
 import { SignedIn, SignedOut, useUser } from "@clerk/nextjs";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
-import { lazy, Suspense,  } from "react";
-import { createToDo } from "@/server/queris";
-import { trpc } from "@/lib/trpc";
-
 import { TodoItems } from "@/app/_components/todoItems";
 import { AddTodoButton } from "@/app/_components/AddToDoButton";
-
-function TodoItemLoading() {
-  return (
-    <div className="mx-auto grid max-w-2xl grid-cols-1 gap-2">Loading</div>
-  );
-}
+import { Suspense } from "react";
 
 export default function HomePage() {
 
