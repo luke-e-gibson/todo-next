@@ -15,6 +15,7 @@ A serverless todo app made in nextjs.
 
 ### What you need:
 - [Clerk Account](https://clerk.com/) 
+- Sentry Account
 - Postgres database
   - Local with docker ```docker compose up ```
   - [Remote with neon](https://neon.tech) 
