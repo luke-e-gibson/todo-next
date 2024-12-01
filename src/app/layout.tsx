@@ -18,10 +18,10 @@ export default function RootLayout({
     <html lang="en" className={`${GeistSans.variable}`}>
         <ClerkProvider>
           <body>
-          <header>
-            <Navbar />
-          </header>
-        {children}
+            <header>
+              <Navbar />
+            </header>
+            {children}
           </body>
         </ClerkProvider>
     </html>

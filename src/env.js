@@ -11,12 +11,14 @@ export const env = createEnv({
   },
 
   client: {
+    NEXT_PUBLIC_GOOGLE_CONTENT_HEAD: z.string(),
   },
 
   runtimeEnv: {
     DATABASE_URL: process.env.DATABASE_URL,
     NODE_ENV: process.env.NODE_ENV,
     SENTRY_DSN: process.env.SENTRY_DSN,
+    NEXT_PUBLIC_GOOGLE_CONTENT_HEAD: process.env.GOOGLE_CONTENT_HEAD ?? "hello"
   },
 
   skipValidation: !!process.env.SKIP_ENV_VALIDATION,
