@@ -1,8 +1,6 @@
-import { SignedIn, SignedOut, useUser } from "@clerk/nextjs";
+import { SignedIn, SignedOut } from "@clerk/nextjs";
 import { TodoItems } from "@/app/_components/TodoItems";
 import { AddTodoButton } from "@/app/_components/AddTodoButton";
-import { Suspense } from "react";
-
 export default function HomePage() {
 
 

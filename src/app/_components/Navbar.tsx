@@ -1,4 +1,4 @@
-import { SignedIn, SignedOut, SignIn, SignInButton, SignUp, SignUpButton, UserButton } from "@clerk/nextjs";
+import { SignedIn, SignedOut, SignInButton, SignUpButton, UserButton } from "@clerk/nextjs";
 import { Button } from "@/components/ui/button"
 import Link from "next/link";
 
@@ -6,7 +6,7 @@ export default function Navbar() {
   return (
     <nav className="flex items-center justify-between border-b-2 border-border px-4 py-4 sm:px-6 lg:px-8 shadow">
       <SignedIn>
-        <Link href="/app">
+        <Link href="/">
           <h1 className="text-xl">Todo App</h1>
         </Link>
       </SignedIn>

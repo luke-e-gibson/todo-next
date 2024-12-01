@@ -1,21 +1,12 @@
-// Example model schema from the Drizzle docs
-// https://orm.drizzle.team/docs/sql-schema-declaration
-
-import { sql } from "drizzle-orm";
 import {
   bigint, bigserial,
   boolean,
-  index,
-  integer,
   pgTableCreator,
-  serial, text,
-  timestamp,
+  text,
   varchar
 } from "drizzle-orm/pg-core";
-import * as module from "node:module";
 
 export const createTable = pgTableCreator((name) => `${name}`);
-
 
 export const todos = createTable("ToDos", {
   id: bigserial("id", { mode: "number" }).primaryKey(),
