@@ -1,8 +1,8 @@
 # Nextjs TODO App
-
-A serverless todo app made in nextjs.
-
 ![Screenshot of app](https://utfs.io/f/XYf3vgwsdO6enWEt3KHQPeh7KjDSN6kzUmgwCMXdOVcvny4J)
+
+A serverless todo app made in nextjs. Todos are stored in a postgres database and are tied to your account. This project uses Clerk to handel authentication.
+The ui was built with shadcn components and tailwind CSS.
 
 
 ## Using Todo App
