@@ -53,5 +53,6 @@ A serverless todo app made in nextjs.
 2. Create Sentry nextjs project
 3. Add Sentry DSN in to .env like ``` SENTRY_DSN="https://***********@***********.ingest.us.sentry.io/************" ```
 
+
 ### 4. Run the project
 1. Run the project by running ``` pnpm dev ```
