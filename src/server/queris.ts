@@ -27,3 +27,7 @@ export async function getUserTodos() {
 export async function changeTodoStatus(todoId: number, status: boolean) {
   await db.update(todos).set({done: status}).where(eq(todos.id, todoId))
 }
+
+export async function deleteTodo(todoId: number){
+  await db.delete(todos).where(eq(todos.id, todoId))
+}

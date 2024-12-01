@@ -9,14 +9,21 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { MoreHorizontal } from "lucide-react";
 import { useState } from "react";
-import { changeTodoStatus } from "@/server/queris";
+import { changeTodoStatus, deleteTodo } from "@/server/queris";
+import { useRouter } from "next/navigation";
+
 
 export function Todo({ done, text, id }: { done: boolean; text: string; id: number }) {
   const [checked, setChecked] = useState(done);
-
+  const router = useRouter();
   async function handleToggle() {
     setChecked(!checked)
     await changeTodoStatus(id, !checked);
+  }
+
+  async function handleDelete() {
+    await deleteTodo(id)
+    void router.refresh()
   }
 
   return (
@@ -37,8 +44,7 @@ export function Todo({ done, text, id }: { done: boolean; text: string; id: numb
           <DropdownMenuContent>
             <DropdownMenuLabel> Todo Actions </DropdownMenuLabel>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>Edit</DropdownMenuItem>
-            <DropdownMenuItem>Delete</DropdownMenuItem>
+            <DropdownMenuItem onClick={()=> handleDelete()}>Delete</DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       </div>
