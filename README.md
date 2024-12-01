@@ -48,5 +48,10 @@ A serverless todo app made in nextjs.
 2. Install deps by running ```pnpm install```
 3. Deploy schema by running ```pnpm db:push```
 
+### 4. Setup Sentry
+1. Create Sentry account
+2. Create Sentry nextjs project
+3. Add Sentry DSN in to .env like ``` SENTRY_DSN="https://***********@***********.ingest.us.sentry.io/************" ```
+
 ### 4. Run the project
 1. Run the project by running ``` pnpm dev ```
