@@ -2,7 +2,7 @@
 
 A serverless todo app made in nextjs.
 
-![Screenshot of app](assets/app-screenshot.png)
+![Screenshot of app](https://utfs.io/f/XYf3vgwsdO6enWEt3KHQPeh7KjDSN6kzUmgwCMXdOVcvny4J)
 
 ## Running the project
 
