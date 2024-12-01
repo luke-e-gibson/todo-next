@@ -2,7 +2,7 @@ services:
   database:
     image: 'postgres:17-alpine'
     ports:
-      - 15432:5432
+      - "15432:5432"
     env_file:
       - .env.docker
     networks:
